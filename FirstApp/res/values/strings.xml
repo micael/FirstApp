@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, FirstAppActivity!</string>
-    <string name="app_name">FirstApp</string>
+    <string name="app_name">Daelie</string>
     <string name="world">World!</string>
     <string name="calendar">TODO</string>
 </resources>
