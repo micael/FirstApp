@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,19 +23,38 @@ public class FirstAppActivity extends Activity {
 		setContentView(R.layout.main);
 		TextView calendarTV = (TextView) findViewById(R.id.calendar);
 
-		String calendarText = "";
 		String response = getCalendarString();
 		try {
 			JSONObject jsonObject = new JSONObject(response);
-			String date = jsonObject.getString("datum");
-			calendarText = date;
+			StringBuffer calendarText = parseAndFormat(jsonObject);
+			calendarTV.setText(calendarText);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		calendarTV.setText(calendarText);
+	}
 
+	private StringBuffer parseAndFormat(JSONObject jsonObject) throws JSONException {
+		StringBuffer calendarText = new StringBuffer();
+		String datum = jsonObject.getString("datum");
+		String unixdatum = jsonObject.getString("unixdatum");
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+		Date date = new Date(Long.valueOf(unixdatum));
+		format.format(date);
+		String dag = jsonObject.getString("dag");
+		// String veckodag = jsonObject.getString("veckodag");
+		String vecka = jsonObject.getString("vecka");
+		calendarText.append(datum);
+		calendarText.append(" ");
+		calendarText.append(format.format(date));
+		calendarText.append(" ");
+		calendarText.append(dag);
+		calendarText.append(" ");
+		// calendarText.append(veckodag);
+		calendarText.append(" V:");
+		calendarText.append(vecka);
+		return calendarText;
 	}
 
 	private String getCalendarString() {
