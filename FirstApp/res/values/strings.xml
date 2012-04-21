@@ -5,4 +5,5 @@
     <string name="app_name">Daelie</string>
     <string name="world">World!</string>
     <string name="calendar">TODO</string>
+    <string name="redDay"></string>
 </resources>

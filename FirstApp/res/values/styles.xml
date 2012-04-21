@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <color name="red">#ff0000</color>
+
     <style name="myTextColor" parent="android:Widget.TextView">
         <item name="android:textColor">@android:color/black</item>
     </style>
+
+    <style name="myRedDayColor" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
 </resources>
